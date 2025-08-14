@@ -1,26 +1,42 @@
-import { useState } from 'react'
+import React from "react";
+import MovieForm from "./components/MovieForm";
+import { MOVIES } from "./constants/movies";
+import { useMovieForm } from "./hooks/useMovieForm";
+import SuccessPage from "./components/SuccessPage";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const {
+    formData,
+    errors,
+    submitted,
+    handleInputChange,
+    handleMovieSelect,
+    handleSubmit,
+    handleReset
+  } = useMovieForm();
 
   return (
-    <div className="min-h-screen bg-blue-500 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold text-center mb-4 text-gray-800">
-          Test App - Tailwind CSS
-        </h1>
-        <p className="text-center mb-4 text-gray-600">
-          If you see blue background and white box, Tailwind is working!
-        </p>
-        <button 
-          onClick={() => setCount(count + 1)}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors"
-        >
-          Count: {count}
-        </button>
+    <div className="min-h-screen bg-black py-8 px-4">
+      <div className="max-w-2xl mx-auto">
+        {!submitted ? (
+          <MovieForm
+            formData={formData}
+            errors={errors}
+            movies={MOVIES}
+            onInputChange={handleInputChange}
+            onMovieSelect={handleMovieSelect}
+            onSubmit={handleSubmit}
+            onReset={handleReset}
+          />
+        ) : (
+          <SuccessPage
+            formData={formData}
+            onReset={handleReset}
+          />
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
