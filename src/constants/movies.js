@@ -1,4 +1,4 @@
-const MOVIES = [
+export const MOVIES = [
     { title: "Avatar", year: "2009", director: "James Cameron" },
     { title: "Inception", year: "2010", director: "Christopher Nolan" },
     { title: "Interstellar", year: "2014", director: "Christopher Nolan" },
