@@ -1,7 +1,7 @@
 import React from 'react';
 import RadioGroup from './RadioGroup';
 
-const MovieSelection = ({ movies, selectedMovie, onMovieSelect, error }) => {
+const MovieSelection = ({ movies, selectedMovie, onMovieSelect, error, id }) => {
   const movieOptions = movies.map(movie => ({
     value: movie.title,
     label: movie.title,
@@ -28,6 +28,7 @@ const MovieSelection = ({ movies, selectedMovie, onMovieSelect, error }) => {
       error={error}
       required={true}
       renderOption={renderMovieOption}
+      id={id}
     />
   );
 };

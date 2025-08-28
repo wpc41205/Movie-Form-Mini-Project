@@ -5,14 +5,16 @@ const TextAreaField = ({
   value,
   onChange,
   placeholder,
-  rows = 4
+  rows = 4,
+  id
 }) => {
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">
+      <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-2">
         {label}
       </label>
       <textarea
+        id={id}
         value={value}
         onChange={onChange}
         rows={rows}

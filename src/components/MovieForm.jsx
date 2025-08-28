@@ -30,6 +30,7 @@ const MovieForm = ({
           placeholder={FIELD_PLACEHOLDERS[FORM_FIELDS.NAME]}
           error={errors.name}
           required={true}
+          id="name"
         />
 
         <InputField
@@ -40,6 +41,7 @@ const MovieForm = ({
           placeholder={FIELD_PLACEHOLDERS[FORM_FIELDS.EMAIL]}
           error={errors.email}
           required={true}
+          id="email"
         />
 
         <MovieSelection
@@ -47,6 +49,7 @@ const MovieForm = ({
           selectedMovie={selectedMovie}
           onMovieSelect={onMovieSelect}
           error={errors.movie}
+          id="movie"
         />
 
         <TextAreaField
@@ -54,9 +57,10 @@ const MovieForm = ({
           value={comment}
           onChange={(e) => onInputChange(FORM_FIELDS.COMMENT, e.target.value)}
           placeholder={FIELD_PLACEHOLDERS[FORM_FIELDS.COMMENT]}
+          id="comment"
         />
 
-        <FormButtons onSubmit={onSubmit} onReset={onReset} />
+        <FormButtons onReset={onReset} />
       </form>
     </div>
   );

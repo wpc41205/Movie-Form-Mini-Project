@@ -8,14 +8,18 @@ const InputField = ({
   onChange,
   placeholder,
   error,
-  required = false
+  required = false,
+  id
 }) => {
+  const errorId = `${id}-error`;
+  
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">
+      <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-2">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
       <input
+        id={id}
         type={type}
         value={value}
         onChange={onChange}
@@ -23,8 +27,11 @@ const InputField = ({
           error ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
         }`}
         placeholder={placeholder}
+        aria-invalid={error ? "true" : "false"}
+        aria-describedby={error ? errorId : undefined}
+        required={required}
       />
-      <ErrorMessage error={error} />
+      <ErrorMessage error={error} id={errorId} />
     </div>
   );
 };

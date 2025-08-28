@@ -9,15 +9,19 @@ const RadioGroup = ({
   onChange,
   error,
   required = false,
-  renderOption = (option) => option.label
+  renderOption = (option) => option.label,
+  id
 }) => {
+  const errorId = `${id}-error`;
+  const groupId = `${id}-group`;
+  
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-3">
+      <label htmlFor={groupId} className="block text-sm font-medium text-gray-700 mb-3">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
-      <div className="grid gap-3">
-        {options.map((option) => (
+      <div id={groupId} role="radiogroup" aria-invalid={error ? "true" : "false"} aria-describedby={error ? errorId : undefined}>
+        {options.map((option, index) => (
           <label
             key={option.value}
             className={`flex items-center p-4 border rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-50 ${
@@ -33,6 +37,7 @@ const RadioGroup = ({
               checked={value === option.value}
               onChange={(e) => onChange(e.target.value)}
               className="w-4 h-4 text-red-600 border-gray-300 focus:ring-red-500"
+              aria-describedby={error ? errorId : undefined}
             />
             <div className="ml-3">
               {renderOption(option)}
@@ -40,7 +45,7 @@ const RadioGroup = ({
           </label>
         ))}
       </div>
-      <ErrorMessage error={error} />
+      <ErrorMessage error={error} id={errorId} />
     </div>
   );
 };
